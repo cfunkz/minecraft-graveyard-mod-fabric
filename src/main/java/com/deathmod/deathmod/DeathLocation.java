@@ -10,7 +10,7 @@ public class DeathLocation {
     public static void sendDeathLocation(ServerPlayerEntity player) {
         Vec3d position = player.getPos();
         MutableText message = Text.literal("You died at ").formatted(Formatting.WHITE);
-        // X, Y, Z labels with colors and numbers in white
+        // X, Y, Z labels with colors and numbers in yellow
         MutableText xPart = Text.literal("X: ").formatted(Formatting.RED)
                 .append(Text.literal(Integer.toString((int) position.x)).formatted(Formatting.YELLOW));
         MutableText yPart = Text.literal(" Y: ").formatted(Formatting.GREEN)
