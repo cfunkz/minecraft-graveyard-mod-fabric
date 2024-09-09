@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "deathmod",
+  "version": "${version}",
+  "name": "Death Mod",
+  "description": "Death Location",
+  "authors": ["cfunkz"],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "com.deathmod.deathmod.Deathmod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
