@@ -7,3 +7,7 @@ Place it in your mods directory of minecraft server.
 ![image](https://github.com/user-attachments/assets/178fe870-83bc-4612-9baf-a8444a7374a8)
 
 
+## Commands
+
+`/gravetimer <seconds>` sets the despawn time
+`/gravedestroy <on/off> enables destroying of the chest by players
