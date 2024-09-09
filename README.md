@@ -10,4 +10,4 @@ Place it in your mods directory of minecraft server.
 ## Commands
 
 - `/gravetimer <seconds>` sets the despawn time
-- `/gravedestroy <on/off>` enables destroying of the chest by players
+- `/gravedestroy <on/off>` enables destroying of the barrel by players
