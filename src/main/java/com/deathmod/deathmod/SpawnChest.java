@@ -78,11 +78,17 @@ public class SpawnChest {
         World world = player.getWorld();
         BlockPos chestPos = player.getBlockPos();
 
-        if (!world.getBlockState(chestPos).isAir()) {
+        if (world.getBlockState(chestPos).getBlock() == Blocks.WATER) {
+            world.setBlockState(chestPos, Blocks.BARREL.getDefaultState());
+            if (world.getBlockEntity(chestPos) instanceof BarrelBlockEntity barrel) {
+                transferInventory(player, barrel);
+                scheduleDespawn(world, chestPos, graveTimer);
+            }
+        }
+        else if (!world.getBlockState(chestPos).isAir()) {
             chestPos = chestPos.up();
         }
-
-        if (world.getBlockState(chestPos).isAir()) {
+        if (world.getBlockState(chestPos).isAir() && !(world.getBlockState(chestPos).getBlock() == Blocks.LAVA)) {
             world.setBlockState(chestPos, Blocks.BARREL.getDefaultState());
             if (world.getBlockEntity(chestPos) instanceof BarrelBlockEntity barrel) {
                 transferInventory(player, barrel);
