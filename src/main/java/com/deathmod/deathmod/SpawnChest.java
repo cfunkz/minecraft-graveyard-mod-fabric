@@ -76,26 +76,33 @@ public class SpawnChest {
 
     public static void spawnAtDeathLocation(ServerPlayerEntity player) {
         World world = player.getWorld();
-        BlockPos chestPos = player.getBlockPos();
-
-        if (world.getBlockState(chestPos).getBlock() == Blocks.WATER) {
-            world.setBlockState(chestPos, Blocks.BARREL.getDefaultState());
-            if (world.getBlockEntity(chestPos) instanceof BarrelBlockEntity barrel) {
-                transferInventory(player, barrel);
-                scheduleDespawn(world, chestPos, graveTimer);
-            }
+        BlockPos deathPos = player.getBlockPos();
+        // Do not spawn a barrel if the player died in lava
+        if (world.getBlockState(deathPos).getBlock() == Blocks.LAVA) {
+            return;
         }
-        if (world.getBlockState(chestPos).getBlock() != Blocks.LAVA) {
-            if (!world.getBlockState(chestPos).isAir()) {
-                chestPos = chestPos.up();
-                if (world.getBlockState(chestPos).isAir()) {
-                    world.setBlockState(chestPos, Blocks.BARREL.getDefaultState());
-                    if (world.getBlockEntity(chestPos) instanceof BarrelBlockEntity barrel) {
-                        transferInventory(player, barrel);
-                        scheduleDespawn(world, chestPos, graveTimer);
-                    }
-                }
-            }
+        // Spawn barrel at the same position if the player died in water
+        if (world.getBlockState(deathPos).getBlock() == Blocks.WATER) {
+            spawnBarrel(world, deathPos, player);
+            return;
+        }
+        // If the player died on a non-air block (like stairs), place the barrel one block above
+        if (!world.getBlockState(deathPos).isAir()) {
+            deathPos = deathPos.up();
+        }
+        // Place the barrel if the final position is air
+        if (world.getBlockState(deathPos).isAir()) {
+            spawnBarrel(world, deathPos, player);
+        }
+    }
+
+    private static void spawnBarrel(World world, BlockPos pos, ServerPlayerEntity player) {
+        // Set barrel block at the specified position
+        world.setBlockState(pos, Blocks.BARREL.getDefaultState());
+        // Transfer player's inventory into the barrel
+        if (world.getBlockEntity(pos) instanceof BarrelBlockEntity barrel) {
+            transferInventory(player, barrel);
+            scheduleDespawn(world, pos, graveTimer);
         }
     }
 
