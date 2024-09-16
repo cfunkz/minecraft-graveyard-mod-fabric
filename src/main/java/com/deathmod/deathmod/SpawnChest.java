@@ -113,7 +113,6 @@ public class SpawnChest {
         saveGraveData(); // Persist the data
 
         scheduler.schedule(() -> {
-            // Ensure this code runs on the main thread, as Minecraft's world operations should be done on the main thread
             Objects.requireNonNull(world.getServer()).execute(() -> {
                 if (!world.isClient() && world.getBlockState(pos).isOf(Blocks.BARREL)) {
                     world.removeBlock(pos, false);
