@@ -1,3 +1,8 @@
+![Downloads](https://img.shields.io/github/downloads/cfunkz/minecraft-graveyard-mod-fabric/total)
+![Release](https://img.shields.io/github/release/cfunkz/minecraft-graveyard-mod-fabric.svg)
+![Total Commits](https://img.shields.io/github/commit-activity/t/cfunkz/minecraft-graveyard-mod-fabric)
+
+
 # minecraft-graveyard-mod-fabric
 SERVER-SIDE ONLY Graveyard Mod For 1.21.1 Minecraft and Fabric MC
 
